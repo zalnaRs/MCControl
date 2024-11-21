@@ -1,10 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>MCControl</title>
+    <link href="/static/styles.css" rel="stylesheet">
 </head>
 <body>
+<nav>
+    <h1>MCControl</h1>
 
+    <div>
+        <button id="status_btn">Refresh</button>
+        <input id="refresh_interval_input" placeholder="Refresh interval (in ms)" type="number" value="1000">
+        <span>
+            <label for="scroll_to_bottom_checkbox">Scroll to bottom</label>
+            <input id="scroll_to_bottom_checkbox" type="checkbox">
+        </span>
+    </div>
+</nav>
+<main>
+    <div id="status">
+        <h2>Status: <span id="status_text"></span></h2>
+    </div>
+
+    <div id="actions">
+        <!--        <h2>Actions</h2>-->
+        <button id="start_btn">Start</button>
+        <button id="stop_btn">Stop</button>
+        <button id="kill_btn">Kill</button>
+    </div>
+
+    <div id="log">
+        <!--        <h2>Log</h2>-->
+        <pre id="log_text"></pre>
+        <form id="command_form">
+            <input id="command_input" placeholder="Command..." type="text">
+            <button id="command_btn">Send</button>
+        </form>
+    </div>
+</main>
+
+<script defer src="/static/app.js" type="module"></script>
 </body>
 </html>

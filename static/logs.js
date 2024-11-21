@@ -1,19 +1,28 @@
-const startButton = document.querySelector("#start_btn");
-const stopButton = document.querySelector("#stop_btn");
-const killButton = document.querySelector("#kill_btn");
+const logText = document.querySelector("#log_text")
+const scrollToBottomCheckbox = document.querySelector("#scroll_to_bottom_checkbox")
+import {AnsiUp} from './ansi_up.js'
 
-class Actions {
+const ansi_up = new AnsiUp();
+
+class Logs {
     constructor() {
-        startButton.addEventListener("click", async () => {
-            await fetch(window.API_URL.start.url, {method: window.API_URL.start.method})
-        })
-        stopButton.addEventListener("click", async () => {
-            await fetch(window.API_URL.stop.url, {method: window.API_URL.stop.method})
-        })
-        killButton.addEventListener("click", async () => {
-            await fetch(window.API_URL.kill.url, {method: window.API_URL.kill.method})
-        })
+    }
+
+    async refresh() {
+
+        const log = await (await fetch(window.API_URL.logs.url, {
+            headers: {
+
+                'Authorization': `Bearer ${window.password}`
+            }
+        })).text()
+
+        logText.innerHTML = ansi_up.ansi_to_html(log);
+
+        if (scrollToBottomCheckbox.checked) {
+            logText.scrollTop = logText.scrollHeight;
+        }
     }
 }
 
-export default Actions
+export default Logs
