@@ -44,7 +44,7 @@ fn rocket() -> _ {
     rocket::build()
         .manage(args)
         .manage(app_state)
-        .mount("/static", rocket::fs::FileServer::from("static"))
+        .mount("/admin/static", rocket::fs::FileServer::from("static"))
         .mount("/", routes![status])
         .mount("/admin", routes![admin::index])
         .mount("/admin/api", routes![admin::start, admin::kill, admin::status, admin::stop, admin::logs, admin::execute])
