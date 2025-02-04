@@ -1,4 +1,4 @@
-const BASE_URL = "/admin/api/";
+const BASE_URL = "api/";
 window.API_URL = {
     status: {url: `${BASE_URL}status`, method: "GET"},
     execute: {url: `${BASE_URL}execute`, method: "POST"},
