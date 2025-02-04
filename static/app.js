@@ -29,10 +29,10 @@ window.onload = async () => {
     const connect = async () => {
         const refreshIntervalInput = document.querySelector("#refresh_interval_input")
 
-        const Status = new (await import("/static/status.js")).default()
-        const Actions = new (await import("/static/actions.js")).default()
-        const Logs = new (await import("/static/logs.js")).default()
-        const Commands = new (await import("/static/commands.js")).default()
+        const Status = new (await import("./static/status.js")).default()
+        const Actions = new (await import("./static/actions.js")).default()
+        const Logs = new (await import("./static/logs.js")).default()
+        const Commands = new (await import("./static/commands.js")).default()
 
         const setRefreshInterval = () => {
             clearInterval(window.refreshInterval);
