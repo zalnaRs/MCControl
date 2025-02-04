@@ -9,40 +9,48 @@
     <link href="/static/styles.css" rel="stylesheet">
 </head>
 <body>
-<nav>
-    <h1>MCControl</h1>
+<div id="main_view">
+    <nav>
+        <h1>MCControl</h1>
 
-    <div>
-        <button id="status_btn">Refresh</button>
-        <input id="refresh_interval_input" placeholder="Refresh interval (in ms)" type="number" value="1000">
-        <span>
+        <div>
+            <button id="status_btn">Refresh</button>
+            <input id="refresh_interval_input" placeholder="Refresh interval (in ms)" type="number" value="1000">
+            <span>
             <label for="scroll_to_bottom_checkbox">Scroll to bottom</label>
             <input id="scroll_to_bottom_checkbox" type="checkbox">
         </span>
-    </div>
-</nav>
-<main>
-    <div id="status">
-        <h2>Status: <span id="status_text"></span></h2>
-    </div>
+        </div>
+    </nav>
+    <main>
+        <div id="status">
+            <h2>Status: <span id="status_text"></span></h2>
+        </div>
 
-    <div id="actions">
-        <!--        <h2>Actions</h2>-->
-        <button id="start_btn">Start</button>
-        <button id="stop_btn">Stop</button>
-        <button id="kill_btn">Kill</button>
-    </div>
+        <div id="actions">
+            <!--        <h2>Actions</h2>-->
+            <button id="start_btn">Start</button>
+            <button id="stop_btn">Stop</button>
+            <button id="kill_btn">Kill</button>
+        </div>
 
-    <div id="log">
-        <!--        <h2>Log</h2>-->
-        <pre id="log_text"></pre>
-        <form id="command_form">
-            <input id="command_input" placeholder="Command..." type="text">
-            <button id="command_btn">Send</button>
-        </form>
-    </div>
-</main>
+        <div id="log">
+            <!--        <h2>Log</h2>-->
+            <pre id="log_text"></pre>
+            <form id="command_form">
+                <input id="command_input" placeholder="Command..." type="text">
+                <button id="command_btn">Send</button>
+            </form>
+        </div>
+    </main>
 
-<script defer src="/static/app.js" type="module"></script>
+    <script defer src="/static/app.js" type="module"></script>
+</div>
+<div id="login_view">
+    <form id="login_form">
+        <input autocomplete="password" id="login_form_password" name="password" placeholder="Password" type="password">
+        <input type="submit" value="Login">
+    </form>
+</div>
 </body>
 </html>

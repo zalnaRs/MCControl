@@ -1,4 +1,4 @@
-const BASE_URL = "/api/";
+const BASE_URL = "/admin/api/";
 window.API_URL = {
     status: {url: `${BASE_URL}status`, method: "GET"},
     execute: {url: `${BASE_URL}execute`, method: "POST"},
@@ -9,22 +9,40 @@ window.API_URL = {
 };
 
 window.onload = async () => {
-    window.password = prompt("Enter password:");
-    const refreshIntervalInput = document.querySelector("#refresh_interval_input")
+    const mainView = document.querySelector("#main_view")
+    const loginView = document.querySelector("#login_view")
 
-    const Status = new (await import("/static/status.js")).default()
-    const Actions = new (await import("/static/actions.js")).default()
-    const Logs = new (await import("/static/logs.js")).default()
-    const Commands = new (await import("/static/commands.js")).default()
+    mainView.style.display = "none"
 
-    const setRefreshInterval = () => {
-        clearInterval(window.refreshInterval);
-        window.refreshInterval = setInterval(() => {
-            Status.refresh();
-            Logs.refresh();
-        }, parseInt(refreshIntervalInput.value));
-    };
+    const loginForm = document.querySelector("#login_form")
+    const passwordInput = document.querySelector("#login_form_password")
 
-    setRefreshInterval();
-    refreshIntervalInput.onchange = setRefreshInterval;
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        window.password = passwordInput.value
+        mainView.style.display = "block"
+        loginView.style.display = "none"
+        await connect()
+    })
+
+    const connect = async () => {
+        const refreshIntervalInput = document.querySelector("#refresh_interval_input")
+
+        const Status = new (await import("/static/status.js")).default()
+        const Actions = new (await import("/static/actions.js")).default()
+        const Logs = new (await import("/static/logs.js")).default()
+        const Commands = new (await import("/static/commands.js")).default()
+
+        const setRefreshInterval = () => {
+            clearInterval(window.refreshInterval);
+            window.refreshInterval = setInterval(() => {
+                Status.refresh();
+                Logs.refresh();
+            }, parseInt(refreshIntervalInput.value));
+        };
+
+        setRefreshInterval();
+        refreshIntervalInput.onchange = setRefreshInterval;
+    }
 }
