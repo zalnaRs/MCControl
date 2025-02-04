@@ -24,7 +24,7 @@ pub struct Args {
 }
 
 #[get("/status")]
-async fn is_online(state: &State<Arc<Mutex<AppState>>>) -> &'static str {
+async fn status(state: &State<Arc<Mutex<AppState>>>) -> &'static str {
     let state = state.lock().await;
     if state.child.is_some() {
         "1" // Minecraft server is running
@@ -45,7 +45,7 @@ fn rocket() -> _ {
         .manage(args)
         .manage(app_state)
         .mount("/static", rocket::fs::FileServer::from("static"))
-        .mount("/", routes![is_online])
+        .mount("/", routes![status])
         .mount("/admin", routes![admin::index])
         .mount("/admin/api", routes![admin::start, admin::kill, admin::status, admin::stop, admin::logs, admin::execute])
 }
