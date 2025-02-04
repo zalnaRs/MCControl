@@ -8,9 +8,6 @@ window.API_URL = {
     logs: {url: `${BASE_URL}logs`, method: "GET"},
 };
 
-if (!window.location.href.endsWith("/"))
-    location.href += "/";
-
 window.onload = async () => {
     const mainView = document.querySelector("#main_view")
     const loginView = document.querySelector("#login_view")

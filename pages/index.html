@@ -9,6 +9,10 @@
     <link href="./static/styles.css" rel="stylesheet">
 </head>
 <body>
+<script defer>
+    if (!window.location.href.endsWith("/"))
+        location.href += "/";
+</script>
 <div id="main_view">
     <nav>
         <h1>MCControl</h1>
